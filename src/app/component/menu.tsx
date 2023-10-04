@@ -1,5 +1,6 @@
 import React from 'react';
 import { MenuItem } from '../model/menu-item';
+import Link from 'next/link';
 
 type MenuProps = {
     items:MenuItem[],
@@ -11,9 +12,9 @@ const Menu: React.FC<MenuProps> = ({items, menuItemClassName = ""}) => {
         <ul className='flex flex-row gap-[20px]'>
             {items.map(item => (
                 <li key={item.id}>
-                    <a href='{item.url}' className={menuItemClassName}>
+                    <Link href={item.url} className={menuItemClassName}>
                     {item.name}
-                    </a>
+                    </Link>
                 </li>
             ))}
         </ul>

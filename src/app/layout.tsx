@@ -1,6 +1,7 @@
 import "./styles/global.css"
 import Favicon from '../../public/assets/images/logo-trans.png';
 import { ReduxProvider } from "@/redux/provider";
+import GlobalNavigation from "./component/global-navigation";
 
 export const metadata = {
     title: 'Game Town',
@@ -17,6 +18,7 @@ export const metadata = {
       <html lang="en">
         <body>
           <ReduxProvider>
+              <GlobalNavigation/>
               {children}
           </ReduxProvider>
         </body>
