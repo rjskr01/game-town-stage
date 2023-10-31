@@ -11,19 +11,19 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
             <div className="flex-[60%] text-black font-[Arial] ml-[20px]">
                 {!isExistingMember ?
                     <div>
-                        <h1 className="text-[red] text-[18px] font-[800] ml-[22px]">JOIN FOR FREE:</h1>
+                        <h1 className="text-[red] text-[20px] font-[800] ml-[22px]">JOIN FOR FREE:</h1>
                         <ul>
                             <li>
-                                <input className="align-middle mr-[10px]" type="radio" id="freeMember" name="MemberShip" value="free" checked />
+                                <input className="align-middle mr-[10px] placeholder:text-[10px] placeholder:pl-4" type="radio" id="freeMember" name="MemberShip" value="free" checked />
                                 <label htmlFor="freeMember" className="text-[12px] font-[800]">REDJACK MEMBERSHIP / 60 Minutes of free play per day</label><br />
                                 <p className="text-[red] text-[10px] ml-[22px]">Or Up Grade to One Eye Jack Membership with unlimited play and no advertising</p>
                             </li>
                             <li>
-                                <input className="align-middle mr-[10px]" type="radio" id="annualMember" name="MemberShip" value="annual" />
+                                <input className="align-middle mr-[10px] placeholder:text-[10px] placeholder:pl-4" type="radio" id="annualMember" name="MemberShip" value="annual" />
                                 <label htmlFor="annualMember" className="text-[12px]">Annual membership at $60/year (16 cents per day)</label><br />
                             </li>
                             <li>
-                                <input className="align-middle mr-[10px]" type="radio" id="monthlyMember" name="MemberShip" value="monthly" />
+                                <input className="align-middle mr-[10px] placeholder:text-[10px] placeholder:pl-4" type="radio" id="monthlyMember" name="MemberShip" value="monthly" />
                                 <label htmlFor="monthlyMember" className="text-[12px]">Monthly membership at $5.99/month (20 cents a day)</label><br />
                             </li>
                         </ul>
@@ -40,30 +40,30 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         </div>
                     </div>
                 }
-                <ul className="text-right mr-[20px] text-[14px]">
+                <ul className="text-right mr-[20px] text-[12px] md:text-[14px]">
                     <li className="mb-[5px]">
                         <label className="mr-[10px]" htmlFor="first_name"><b>First Name</b></label>
-                        <input className="border border-black border-solid w-[66%] h-[30px]" type="text" placeholder="Enter First Name" name="first_name" id="first_name" required />
+                        <input className="border border-black border-solid w-[66%] h-[30px] placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Enter First Name" name="first_name" id="first_name" required />
                     </li>
                     <li className="mb-[5px]">
                         <label className="mr-[10px]" htmlFor="last_name"><b>Last Name</b></label>
-                        <input className="border border-black border-solid w-[66%] h-[30px]" type="text" placeholder="Enter Last Name" name="last_name" id="last_name" required />
+                        <input className="border border-black border-solid w-[66%] h-[30px] placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Enter Last Name" name="last_name" id="last_name" required />
                     </li>
                     <li className="mb-[5px]">
                         <label className="mr-[10px]" htmlFor="email"><b>E-Mail</b></label>
-                        <input className="border border-black border-solid w-[66%] h-[30px]" type="text" placeholder="Enter Email" name="email" id="email" required />
+                        <input className="border border-black border-solid w-[66%] h-[30px] placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Enter Email" name="email" id="email" required />
                     </li>
                     <li className="mb-[5px]">
                         <label className="mr-[10px]" htmlFor="confirm_email"><b>Confirm E-Mail</b></label>
-                        <input className="border border-black border-solid w-[66%] h-[30px]" type="text" placeholder="Confirm Email" name="confirm_email" id="confirm_email" required />
+                        <input className="border border-black border-solid w-[66%] h-[30px] placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Confirm Email" name="confirm_email" id="confirm_email" required />
                     </li>
                     <li className="mb-[5px]">
                         <label className="mr-[10px]" htmlFor="psw"><b>Password</b></label>
-                        <input className="border border-black border-solid w-[66%] h-[30px]" type="password" placeholder="Enter Password" name="psw" id="psw" required />
+                        <input className="border border-black border-solid w-[66%] h-[30px] placeholder:text-[10px] placeholder:pl-4" type="password" placeholder="Enter Password" name="psw" id="psw" required />
                     </li>
                     <li className="mb-[5px]">
                         <label className="mr-[10px]" htmlFor="psw-repeat"><b>Confirm Password</b></label>
-                        <input className="border border-black border-solid w-[66%] h-[30px]" type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required />
+                        <input className="border border-black border-solid w-[66%] h-[30px] placeholder:text-[10px] placeholder:pl-4" type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required />
                     </li>
                 </ul>
                 <div>
@@ -77,15 +77,15 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                             <ul className="text-right text-[12px]">
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamer_name"><b>Gamer Name</b></label>
-                                    <input className="border border-black border-solid" type="text" placeholder="Gamer Name" name="gamer_name" id="gamer_name" required />
+                                    <input className="border border-black border-solid placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Gamer Name" name="gamer_name" id="gamer_name" required />
                                 </li>
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamer_city"><b>City</b></label>
-                                    <input className="border border-black border-solid" type="text" placeholder="Enter City" name="gamer_city" id="gamer_city" required />
+                                    <input className="border border-black border-solid placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Enter City" name="gamer_city" id="gamer_city" required />
                                 </li>
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamer_county"><b>County</b></label>
-                                    <input className="border border-black border-solid" type="text" placeholder="Enter County" name="gamer_county" id="gamer_county" required />
+                                    <input className="border border-black border-solid placeholder:text-[10px] placeholder:pl-4" type="text" placeholder="Enter County" name="gamer_county" id="gamer_county" required />
                                 </li>
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamer_state"><b>State/Plus</b></label>
@@ -115,7 +115,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     </div>
                 </div>
                 <div className={`mt-[20px] text-[14px] pb-10 flex ${isExistingMember ? 'items-center' : 'items-baseline'}`}>
-                    <input className="mr-[13px]" type="checkbox" id="terms" name="terms" value="terms" />
+                    <input className="mr-[13px] placeholder:text-[10px] placeholder:pl-4" type="checkbox" id="terms" name="terms" value="terms" />
                     {!isExistingMember ?
                         <ul>
                             <li>I have read and agree to the rules of membership for Gametown.us</li>
@@ -125,8 +125,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         : <div className="text-[11px]">I have read, understand, and agree to the Gametown.com <span className="underline">terms and conditions.</span></div>}
                 </div>
                 {isExistingMember ? <div className="text-center mt-[15px] md:mt-[15px]">
-                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] mr-[10px] text-white" type="button" value={"Cancel Changes"} />
-                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] text-white" type="button" value={"Save Changes"} />
+                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] mr-[10px] text-white placeholder:text-[10px] placeholder:pl-4" type="button" value={"Cancel Changes"} />
+                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] text-white placeholder:text-[10px] placeholder:pl-4" type="button" value={"Save Changes"} />
                 </div> : ''}
             </div>
             <div className="flex-[40%] text-center text-black font-[Arial] text-[14px]">

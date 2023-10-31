@@ -53,10 +53,10 @@ const TournamentContainer = () => {
             <a id="houseEvent" onClick={onEventTitleClick} href="#">HOUSE EVENTS</a>
             <a id="clubEvent" onClick={onEventTitleClick} href="#">CLUB EVENTS</a>
           </div>
-          <div className="dateHolder margin20 font-Arial fontSize20">
+          <div className="dateHolder margin20 font-Arial text-[12px] md:text-sm">
             <div className="font-[800]" id="trmntDate">{"October"}</div>
           </div>
-          <table className="trnamentTble textAlignCentre font-Arial fontSize20">
+          <table className="trnamentTble textAlignCentre font-Arial text-[12px] md:text-sm">
             <tbody>
               <tr>
                 <td className="pr-[10px]">01</td>
@@ -79,10 +79,10 @@ const TournamentContainer = () => {
             </tbody>
           </table>
 
-          <div className="dateHolder margin20 font-Arial fontSize20">
+          <div className="dateHolder margin20 font-Arial text-[12px] md:text-sm">
             <div className="font-[800]" id="trmntDate">{"November"}</div>
           </div>
-          <table className="trnamentTble textAlignCentre font-Arial fontSize20">
+          <table className="trnamentTble textAlignCentre font-Arial text-[12px] md:text-sm">
             <tbody>
               <tr>
                 <td className="pr-[10px]">01</td>
@@ -106,10 +106,10 @@ const TournamentContainer = () => {
           </table>
 
 
-          <div className="dateHolder margin20 font-Arial fontSize20">
+          <div className="dateHolder margin20 font-Arial text-[12px] md:text-sm">
             <div className="font-[800]" id="trmntDate">{"December"}</div>
           </div>
-          <table className="trnamentTble textAlignCentre font-Arial fontSize20">
+          <table className="trnamentTble textAlignCentre font-Arial text-[12px] md:text-sm">
             <tbody>
               <tr>
                 <td className="pr-[10px]">01</td>
