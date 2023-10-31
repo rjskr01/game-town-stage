@@ -14,7 +14,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         <h1 className="text-[red] text-[20px] font-[800] ml-[22px]">JOIN FOR FREE:</h1>
                         <ul>
                             <li>
-                                <input className="align-middle mr-[10px] placeholder:text-[10px] placeholder:pl-4" type="radio" id="freeMember" name="MemberShip" value="free" checked />
+                                <input className="align-middle mr-[10px] placeholder:text-[10px] placeholder:pl-4" type="radio" id="freeMember" name="MemberShip" value="free" checked onChange={() => { }} />
                                 <label htmlFor="freeMember" className="text-[12px] font-[800]">REDJACK MEMBERSHIP / 60 Minutes of free play per day</label><br />
                                 <p className="text-[red] text-[10px] ml-[22px]">Or Up Grade to One Eye Jack Membership with unlimited play and no advertising</p>
                             </li>
@@ -89,11 +89,11 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                 </li>
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamer_state"><b>State/Plus</b></label>
-                                    <select>
+                                    <select defaultValue={"NV"}>
                                         {
                                             stateItems.map((item, index) => {
                                                 return (
-                                                    <option key={index} value={item.key} selected={item.key === 'NV'}>{item.value}</option>
+                                                    <option key={index} value={item.key}>{item.value}</option>
                                                 )
                                             })
                                         }
@@ -135,7 +135,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         <ul>
                             <li className="text-[red] mb-[15px] font-[800]">Up Grade To One Eye Jack Member</li>
                             <li className="text-left">
-                                <input className="align-middle mr-[10px]" type="radio" id="upannualMember" name="UpMemberShip" value="annual" checked />
+                                <input className="align-middle mr-[10px]" type="radio" id="upannualMember" name="UpMemberShip" value="annual" checked onChange={() => { }} />
                                 <label htmlFor="upannualMember" className="text-[12px]">Annual membership at $60/year (16 cents per day)</label><br />
                             </li>
                             <li className="text-left">
@@ -163,7 +163,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     <div className="flex mt-[20px]">
                         <div className="flex-[13%]">
                             <div>
-                                <input className="mr-[2px]" type="radio" name="expose_player" id="expose_player_yes" value="yes" checked />
+                                <input className="mr-[2px]" type="radio" name="expose_player" id="expose_player_yes" value="yes" checked onChange={() => { }} />
                                 <label htmlFor="expose_player_yes">Show</label>
                             </div>
                             <div>
@@ -178,7 +178,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     <div className="flex mt-[20px]">
                         <div className="flex-[9%]">
                             <div>
-                                <input className="mr-[2px]" type="radio" name="can_contacted" id="contact_player_yes" value="yes" checked />
+                                <input className="mr-[2px]" type="radio" name="can_contacted" id="contact_player_yes" value="yes" checked onChange={() => { }} />
                                 <label htmlFor="contact_player_yes">Yes</label>
                             </div>
                             <div>
