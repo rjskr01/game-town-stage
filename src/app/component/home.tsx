@@ -6,10 +6,15 @@ import { register } from "@/firebase/register";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { log } from "console";
 import { emit } from "process";
-import { addUser } from "@/firebase/user.services";
+import { addUser, getUser } from "@/firebase/user.services";
 import Toast from "./toast";
 
+import { auth } from "@/firebase/initFirebase";
+
 import { showNotificationPopup } from "@/redux/features/game-container-visibility-slices";
+import { CompleteFn, ErrorFn, NextOrObserver, Unsubscribe, User } from "firebase/auth";
+import { userInfo } from "os";
+import { DocumentData } from "firebase/firestore";
 
 export interface IHomeContainer {
     isExistingMember: boolean
@@ -57,6 +62,36 @@ interface FormError {
 
 const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
 
+    const unsubscribe = auth.onAuthStateChanged( async user => {
+        if(user) {
+            let userData: DocumentData | null = await getUser(user.uid);
+            if(userData) {
+                for(const key in userData) {
+                    if(key!== 'uid') {
+                        let data = userData[key as keyof typeof userData];
+                        if(data!=="") {
+                            let inputElement: HTMLInputElement = document.querySelector(`input#${key}`) as HTMLInputElement;
+                            if(inputElement) {
+                                inputElement.value = data;
+    
+                                if(key === "email") {
+                                    inputElement = document.querySelector(`input#confirmEmail`) as HTMLInputElement;
+                                    inputElement.value = data;
+                                }
+                            } else {
+                                debugger;
+                                console.log(key);
+                            }
+                        }
+                    }
+                }
+            }
+            console.log(userData);
+        }  else {
+            console.log("User is signed out");
+        }
+    });
+    
     const mailInputRef = useRef<HTMLInputElement>(null);
     const [emailValidationMessage, setEmailValidationMessage] = useState<string>('');
     const [formData, setFormData] = useState<FormState>({
@@ -321,7 +356,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                 </li>
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="state"><b>State/Plus</b></label>
-                                    <select onChange={handleChange} name="state">
+                                    <select onChange={handleChange} name="state" id="state">
                                         {
                                             stateItems.map((item, index) => {
                                                 return (

@@ -1,3 +1,4 @@
+import { error } from "console";
 import { getFirestore, collection, doc, setDoc, getDocs, query, where } from "firebase/firestore";
 
 const firestore = getFirestore();
@@ -16,11 +17,20 @@ const addUser = async (user: any) => {
 }
 
 const getUser = async (userId : string) => {
-    const querySnapshot = await getDocs(query(usersCollection, where("userId", "==", userId)));
-    querySnapshot.forEach((doc) => {
-        const userData = doc.data();
-        console.log("User info:", userData);
-      });
+    
+    try {
+        const querySnapshot = await getDocs(query(usersCollection, where("uid", "==", userId)));
+
+        if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data();
+            return userData;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        throw error;
+    }
 }
 
-export { addUser };
+export { addUser, getUser };
