@@ -6,13 +6,16 @@ type InitialState = {
 
 type GameContainerVisibleState = {
     isHidden: boolean,
-    isMaximized: boolean
+    isMaximized: boolean,
+    isNotificationPopupVisible: boolean,
+    message: string
 };
 
 const intitialState = {
     value: {
         isHidden: true,
-        isMaximized: false
+        isMaximized: false,
+        isNotificationPopupVisible: false
     } as GameContainerVisibleState,
 } as InitialState;
 
@@ -27,9 +30,13 @@ export const gameContainerVisibilitySlice = createSlice({
         toggleGameContainerMaximized: (state, action: PayloadAction<boolean>) => {
             state.value.isMaximized = action.payload;
             return state;
+        },
+        showNotificationPopup: (state, action: PayloadAction<string>) => {
+            state.value.isNotificationPopupVisible = true;
+            state.value.message = action.payload;
         }
     }
 });
 
-export const { toggleGameContainerVisbility, toggleGameContainerMaximized } = gameContainerVisibilitySlice.actions;
+export const { toggleGameContainerVisbility, toggleGameContainerMaximized , showNotificationPopup } = gameContainerVisibilitySlice.actions;
 export default gameContainerVisibilitySlice.reducer;

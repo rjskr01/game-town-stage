@@ -24,9 +24,14 @@ export const notificationPopupVisibilitySlice = createSlice({
         showNotificationPopup: ( state, action: PayloadAction<string>) => {
             state.value.message = action.payload; 
             state.value.isShow = true;
+            setTimeout(()=>{
+                hideNotificationPopup();
+            }, 2000);
+            return state;
         },
         hideNotificationPopup: (state) => {
             state.value.isShow = false;
+            return state;
         }
     }
 });

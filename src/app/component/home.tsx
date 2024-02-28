@@ -9,6 +9,8 @@ import { emit } from "process";
 import { addUser } from "@/firebase/user.services";
 import Toast from "./toast";
 
+import { showNotificationPopup } from "@/redux/features/game-container-visibility-slices";
+
 export interface IHomeContainer {
     isExistingMember: boolean
 }
@@ -57,7 +59,6 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
 
     const mailInputRef = useRef<HTMLInputElement>(null);
     const [emailValidationMessage, setEmailValidationMessage] = useState<string>('');
-    const [isNotificationVisible, setNotificationVisible] = useState<boolean>(false);
     const [formData, setFormData] = useState<FormState>({
         firstName: "",
         lastName: "",
@@ -65,7 +66,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         confirmEmail: "",
         gamerName: "",
         city: "",
-        country: "",
+        country: "NV",
         state: "",
         birthYear: 0,
         sex: "",
@@ -142,7 +143,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     formData.uid = user.uid;
                     addUser(formData);
                     sendMailVerification(user);
-                    setNotificationVisible(true);
+                    showNotificationPopup("Email Verification was sent. Please check your inbox to complete the registration.");
                 })
                 .catch((error)=> {
                     const errorCode = error.code;
@@ -428,7 +429,6 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     {!isExistingMember ? <input className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] text-white" type="button" value={"Join"} onClick={joinBtnClick} /> : ''}
                 </div>
             </div>
-            { isNotificationVisible ? <Toast message="Email verification was sent." isShow={true}/> : null}
         </section > 
     
     )
