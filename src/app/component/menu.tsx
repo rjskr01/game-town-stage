@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useRef } from 'react';
 import { MenuItem } from '../model/menu-item';
 import Link from 'next/link';
