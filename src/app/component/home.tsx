@@ -62,35 +62,94 @@ interface FormError {
 
 const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
 
-    const unsubscribe = auth.onAuthStateChanged( async user => {
-        if(user) {
-            let userData: DocumentData | null = await getUser(user.uid);
-            if(userData) {
-                for(const key in userData) {
-                    if(key!== 'uid') {
-                        let data = userData[key as keyof typeof userData];
-                        if(data!=="") {
-                            let inputElement: HTMLInputElement = document.querySelector(`input#${key}`) as HTMLInputElement;
-                            if(inputElement) {
-                                inputElement.value = data;
+    useEffect(()=>{
+        const unsubscribe = auth.onAuthStateChanged( async user => {
+            if(user) {
+                let userData: DocumentData | null = await getUser(user.uid);
+                if(userData) {
+                    for(const key in userData) {
+                        if(key!== 'uid') {
+                            let data = userData[key as keyof typeof userData];
+                            if(data!=="") {
+                                let inputElement: HTMLInputElement = document.querySelector(`input#${key}`) as HTMLInputElement;
     
-                                if(key === "email") {
-                                    inputElement = document.querySelector(`input#confirmEmail`) as HTMLInputElement;
+                                if(inputElement) {
                                     inputElement.value = data;
-                                }
-                            } else {
-                                debugger;
-                                console.log(key);
+        
+                                    if(key === "email") {
+                                        inputElement = document.querySelector(`input#confirmEmail`) as HTMLInputElement;
+                                        inputElement.value = data;
+                                    }
+                                } else {
+                                    
+                                    if(key === "state" || key === "sex")  {
+                                        let selectElement: HTMLSelectElement = document.querySelector(`select#${key}`) as HTMLSelectElement;
+                                        if(selectElement) {
+                                            for (var i = 0; i < selectElement.options.length; i++) {
+                                                if (selectElement.options[i].value === data) {
+                                                  selectElement.selectedIndex = i;
+                                                  break;
+                                                }
+                                            }
+                                        }
+                                    } else  if(key === "canShowOnlyGamerInformation") {
+                                        let element = null;
+                                        if(data === true) {
+                                            element = document.querySelector(`input#expose_player_yes`) as HTMLInputElement;
+                                            element.checked = true;
+                                            element = document.querySelector(`input#expose_player_no`) as HTMLInputElement;
+                                            element.checked = false;
+                                        } else {
+                                            element = document.querySelector(`input#expose_player_yes`) as HTMLInputElement;
+                                            element.checked = false;
+                                            element = document.querySelector(`input#expose_player_no`) as HTMLInputElement;
+                                            element.checked = false;
+                                        }
+    
+                                    } else if(key === "canDoEmailContact") {
+    
+                                        let element = null;
+                                        if(data === true) {
+                                            element = document.querySelector(`input#contact_player_yes`) as HTMLInputElement;
+                                            element.checked = true;
+                                            element = document.querySelector(`input#contact_player_no`) as HTMLInputElement;
+                                            element.checked = false;
+                                        } else {
+                                            element = document.querySelector(`input#contact_player_yes`) as HTMLInputElement;
+                                            element.checked = false;
+                                            element = document.querySelector(`input#contact_player_no`) as HTMLInputElement;
+                                            element.checked = false;
+                                        }
+                                        
+                                    } else if(key === "isTermsAndConditionsVerified") {
+                                        debugger;
+                                        let element = document.querySelector(`input#${key}`) as HTMLInputElement;
+                                        element.checked = data === true ? true : false;
+    
+                                    } else if (key === "memberShip") {
+                                        let element = null;
+                                        if(data === "") {
+                                            element = document.querySelector(`input#freeMember`) as HTMLInputElement;
+                                            element.checked = true;
+                                            element = document.querySelector(`input#annualMember`) as HTMLInputElement;
+                                            element.checked = false;
+                                            element = document.querySelector(`input#monthlyMember`) as HTMLInputElement;
+                                            element.checked = false;
+                                        }
+                                    }
+                                    
+                                 }
                             }
                         }
                     }
                 }
+                
+                console.log(userData);
+            }  else {
+                console.log("User is signed out");
             }
-            console.log(userData);
-        }  else {
-            console.log("User is signed out");
-        }
-    });
+        });
+    },[])
     
     const mailInputRef = useRef<HTMLInputElement>(null);
     const [emailValidationMessage, setEmailValidationMessage] = useState<string>('');
@@ -272,7 +331,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
     }
 
     return (
-        <section className="flex">
+    <section className="flex">
             <div className="flex-[60%] text-black font-[Arial] ml-[20px]">
                 {!isExistingMember ?
                     <div>
@@ -370,7 +429,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                     <label className="mr-[10px]" htmlFor="birthYear"><b>Birth Year</b></label>
                                     <input className="border border-black border-solid w-[50px]" type="text" placeholder="" name="birthYear" id="birthYear" required  onChange={handleChange}/>
                                     <label className="mr-[10px]" htmlFor="gamer_sex"><b>Sex</b></label>
-                                    <select className="border border-solid w-[90px]" id="gamer_sex" name="sex" onChange={handleChange}>
+                                    <select className="border border-solid w-[90px]" id="sex" name="sex" onChange={handleChange}>
                                         <option value="N"></option>
                                         <option value="M">Male</option>
                                         <option value="F">Female</option>
@@ -464,7 +523,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     {!isExistingMember ? <input className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] text-white" type="button" value={"Join"} onClick={joinBtnClick} /> : ''}
                 </div>
             </div>
-        </section > 
+        </section> 
     
     )
 }
