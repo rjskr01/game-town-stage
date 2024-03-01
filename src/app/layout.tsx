@@ -21,6 +21,7 @@ export const metadata = {
           <ReduxProvider>
               <GlobalNavigation/>
               {children}
+              <Toast/>
           </ReduxProvider>
         </body>
       </html>

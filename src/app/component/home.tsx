@@ -1,20 +1,18 @@
+'use client'
+
 import { sendMailVerification } from "@/firebase/sendMailVerification";
 import stateItems from "../data/state-items";
-import DropDownList from "./drop-down-list";
 
 import { register } from "@/firebase/register";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { log } from "console";
-import { emit } from "process";
+
 import { addUser, getUser } from "@/firebase/user.services";
-import Toast from "./toast";
 
 import { auth } from "@/firebase/initFirebase";
-
 import { showNotificationPopup } from "@/redux/features/game-container-visibility-slices";
-import { CompleteFn, ErrorFn, NextOrObserver, Unsubscribe, User } from "firebase/auth";
-import { userInfo } from "os";
 import { DocumentData } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 
 export interface IHomeContainer {
     isExistingMember: boolean
@@ -73,13 +71,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                             if(data!=="") {
                                 let inputElement: HTMLInputElement = document.querySelector(`input#${key}`) as HTMLInputElement;
     
-                                if(inputElement) {
+                                if(inputElement && inputElement.type !== "checkbox") {
                                     inputElement.value = data;
-        
-                                    if(key === "email") {
-                                        inputElement = document.querySelector(`input#confirmEmail`) as HTMLInputElement;
-                                        inputElement.value = data;
-                                    }
                                 } else {
                                     
                                     if(key === "state" || key === "sex")  {
@@ -122,7 +115,6 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                         }
                                         
                                     } else if(key === "isTermsAndConditionsVerified") {
-                                        debugger;
                                         let element = document.querySelector(`input#${key}`) as HTMLInputElement;
                                         element.checked = data === true ? true : false;
     
@@ -187,6 +179,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         psw: "Password required"
     });
 
+    const dispatch = useDispatch<AppDispatch>();
+
     useEffect(()=> {
         if(emailValidationMessage !== '') {
             let inputElement:HTMLInputElement = document.querySelector('input#email') as HTMLInputElement;
@@ -195,6 +189,9 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
             setEmailValidationMessage('');
         }
     }, [emailValidationMessage]);
+
+
+
 
     const joinBtnClick = ()=> {
         let isValidData = true;
@@ -237,7 +234,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     formData.uid = user.uid;
                     addUser(formData);
                     sendMailVerification(user);
-                    showNotificationPopup("Email Verification was sent. Please check your inbox to complete the registration.");
+                    dispatch(showNotificationPopup("Email Verification was sent. Please check your inbox to complete the registration."));
                 })
                 .catch((error)=> {
                     const errorCode = error.code;
@@ -253,7 +250,6 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
-        console.log(`name - ${name} and value - ${value}`);
 
         switch(name) {
             case "isTermsAndConditionsVerified": 

@@ -8,24 +8,24 @@ import { logOut } from "@/firebase/logout";
 import { useRouter } from 'next/navigation'
 
 interface LoginInfo  {
-    email: string,
+    userName: string,
     password: string
 }
 
 interface LoginError {
-    email: string,
+    userName: string,
     password: string
 }
 
 const Login = () => {
 
     const [loginData, setLoginData] = useState<LoginInfo>({
-        email : "",
+        userName : "",
         password : ""
     });
 
     const [loginError, setLoginError] = useState<LoginError>({
-        email: "",
+        userName: "",
         password: ""
     });
 
@@ -46,16 +46,19 @@ const Login = () => {
                         inputElement.reportValidity();
                     }
                 }
+            }
 
-                if(isValidData) {
-                    logIn(loginData.email, loginData.password).then(res => {
-                        console.log("Login successfully");
-                        setLoginText("LOG OUT");
-                        router.push("/home?subpage=game");
-                    }).catch(err=>{
-                        console.log(err);
-                    });
-                }
+            if(isValidData) {
+                logIn(loginData.userName, loginData.password).then(res => {
+                    console.log("Login successfully");
+                    setLoginText("LOG OUT");
+                    router.push("/home?subpage=game");
+                }).catch(err=> {
+                    let passwordElement = document.querySelector('input#password') as HTMLInputElement;
+                    passwordElement.setCustomValidity('Invalid credentials');
+                    passwordElement.reportValidity();
+                    console.log(err);
+                });
             }
         } else {
             signOut();
@@ -70,6 +73,8 @@ const Login = () => {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        let inputElement: HTMLInputElement = document.querySelector(`input#${name}`) as HTMLInputElement;
+        inputElement.setCustomValidity(" ");
         setLoginData({...loginData, [name] : value});
         validateField(name, value);
     }
@@ -77,7 +82,7 @@ const Login = () => {
     const validateField = (fieldName: string, value: string) => {
         let error =  '';
         switch(fieldName) {
-            case 'email':
+            case 'userName':
                 value = value as string;
                 error = value.trim() === '' ? 'email is required.' : '';
                 break;
@@ -90,13 +95,13 @@ const Login = () => {
 
     return (
         <section className="flex justify-end w-[90%] mt-[20px]">
-                <div className="float-left font-['Arial'] text-center text-[13px] bg-grey rounded-[10px] w-[150px] h-[20px] leading-[20px] mt-[10px]">
+                <div className={`float-left font-['Arial'] text-center text-[13px] bg-grey rounded-[10px] w-[150px] h-[20px] leading-[20px] mt-[10px] ${loginText === "LOG OUT" ? "hidden" : ""}`}>
                     <Link href={"/home?subpage=game"} > Join the Jack Club </Link>
                 </div>
-                <div className="float-left text-[11px] mx-[20px]">
+                <div className={`float-left text-[11px] mx-[20px] ${loginText === "LOG OUT" ? "hidden" : ""}`}>
                     <div className="mb-[5px]">
                         <label>USER NAME</label>
-                        <input id="email" name="email" type="text" className="p-0 w-[125px] rounded-[5px] ml-[10px] text-black" onChange={handleChange} />
+                        <input id="userName" name="userName" type="text" className="p-0 w-[125px] rounded-[5px] ml-[10px] text-black" onChange={handleChange} />
                     </div>
                     <div>
                         <label>PASS WORD</label>
@@ -104,7 +109,7 @@ const Login = () => {
                     </div>
 
                 </div>
-                <div className="cursor-pointer float-left">
+                <div className={`cursor-pointer float-left ${loginText === "LOG OUT" ? "ml-6" : ""}`}>
                     <div className="circle">
                         <div className="rect" onClick={login}>{loginText}</div>
                     </div>
