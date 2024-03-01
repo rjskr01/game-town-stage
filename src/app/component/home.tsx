@@ -142,7 +142,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
             }
         });
     },[])
-    
+
     const mailInputRef = useRef<HTMLInputElement>(null);
     const [emailValidationMessage, setEmailValidationMessage] = useState<string>('');
     const [formData, setFormData] = useState<FormState>({
@@ -152,8 +152,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         confirmEmail: "",
         gamerName: "",
         city: "",
-        country: "NV",
-        state: "",
+        country: "",
+        state: "NV",
         birthYear: 0,
         sex: "",
         isTermsAndConditionsVerified: false,
@@ -172,7 +172,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         gamerName: "Gamer name is required",
         city: "City name is required",
         country: "Country is required",
-        state: "State is required",
+        state: "",
         birthYear: "birth Year is required",
         sex: "sex is required.",
         isTermsAndConditionsVerified: "Is must read and confirm terms and conditions",
@@ -235,6 +235,10 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     addUser(formData);
                     sendMailVerification(user);
                     dispatch(showNotificationPopup("Email Verification was sent. Please check your inbox to complete the registration."));
+                    // let btnElement = document.querySelector('#clear') as HTMLButtonElement;
+                    // btnElement.disabled = true;
+                    let btnElement = document.querySelector('#join') as HTMLButtonElement;
+                    btnElement.disabled = true;
                 })
                 .catch((error)=> {
                     const errorCode = error.code;
@@ -515,8 +519,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                 </div>
                 <div className="mt-[20px] pb-10">
                     <div className="mb-[20px]">Results will use Gamer Name</div>
-                    {!isExistingMember ? <input className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] mr-[10px] text-white" type="button" value={"Clear"} /> : ''}
-                    {!isExistingMember ? <input className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] text-white" type="button" value={"Join"} onClick={joinBtnClick} /> : ''}
+                    {!isExistingMember ? <input id="clear" className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] mr-[10px] text-white" type="button" value={"Clear"} /> : ''}
+                    {!isExistingMember ? <input id="join" className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] text-white" type="button" value={"Join"} onClick={joinBtnClick} /> : ''}
                 </div>
             </div>
         </section> 
