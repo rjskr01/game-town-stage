@@ -34,12 +34,6 @@ export const gameContainerVisibilitySlice = createSlice({
         showNotificationPopup: (state, action: PayloadAction<string>) => {
             state.value.isNotificationPopupVisible = true;
             state.value.message = action.payload;
-            setTimeout(()=>{
-              
-                console.log("Time interval was completed");
-                // state.value.isNotificationPopupVisible = false;
-                // state.value.message = "";
-            }, 2000);
             return state;
         },
         hideNotificationPopup: (state)=>{

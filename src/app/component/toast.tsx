@@ -27,7 +27,7 @@ const Toast: React.FC<ToastProps> = () => {
     return (
         <>
             {
-                <div className={`toast bg-[#fff] p-[1.5rem] rounded-[0.5em] text-[black] absolute top-0 right-6 ${!isNotificationPopupVisible ? 'hidden' : ""}`}>
+                <div className={`toast bg-[#fff] p-[1.5rem] rounded-[0.5em] text-[black] absolute top-0 right-6 flex flex-row ${!isNotificationPopupVisible ? 'hidden' : ""}`}>
                                 <div className="toast-message w-[400px] h-auto top-1 right-1 text-[16px]" >
                                     <p>
                                         { message }
