@@ -17,7 +17,7 @@ const GlobalNavigation = () => {
 
             <section className="trnmntaddSectionCls flex-[40%]">
                 <TournamentHeader/>
-                <div id="trmntLstHdr" className="mt-[60px] text-[18px] w-[55%] text-center font-['Arial, Helvetica, sans-serif']">TOURNAMENT LISTING</div>
+                <div id="trmntLstHdr" className="mt-[20px] text-[18px] w-[55%] text-center font-['Arial, Helvetica, sans-serif']">TOURNAMENT LISTING</div>
             </section>
 
         </div>
