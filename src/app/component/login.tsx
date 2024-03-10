@@ -52,7 +52,11 @@ const Login = () => {
                 logIn(loginData.userName, loginData.password).then(res => {
                     console.log("Login successfully");
                     setLoginText("LOG OUT");
-                    router.push("/home?subpage=game");
+                    let inputElement: HTMLInputElement = document.querySelector(`input#userName`) as HTMLInputElement;
+                    inputElement.value = "";
+                    let passwordElement = document.querySelector('input#password') as HTMLInputElement;
+                    passwordElement.value = "";
+                    router.push("/");
                 }).catch(err=> {
                     let passwordElement = document.querySelector('input#password') as HTMLInputElement;
                     passwordElement.setCustomValidity('Invalid credentials');
