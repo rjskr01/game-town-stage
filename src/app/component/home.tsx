@@ -239,6 +239,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     // btnElement.disabled = true;
                     let btnElement = document.querySelector('#join') as HTMLButtonElement;
                     btnElement.disabled = true;
+
+                    clearFormData();
                 })
                 .catch((error)=> {
                     const errorCode = error.code;
@@ -251,6 +253,54 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
             
         }
     }
+
+    const clearFormData = ()=> {
+
+        
+        let radioButton = document.querySelector('input[value="free"]') as HTMLInputElement;
+        radioButton.checked = true;
+
+        let radioButtonGroup = document.querySelectorAll('input[name="canShowOnlyGamerInformation"]');
+        for (let i = 0; i < radioButtonGroup.length; i++) { 
+            let radio = radioButtonGroup[i] as HTMLInputElement; 
+            if (radio.value == 'yes') { 
+              radio.checked = true; 
+            }
+        }
+
+        radioButtonGroup = document.querySelectorAll('input[name="canDoEmailContact"]');
+        for (let i = 0; i < radioButtonGroup.length; i++) { 
+            let radio = radioButtonGroup[i] as HTMLInputElement; 
+            if (radio.value == 'yes') { 
+              radio.checked = true; 
+            }
+        }
+
+        let checkBox = document.getElementById('isTermsAndConditionsVerified') as HTMLInputElement;
+        checkBox.checked = false;
+        
+
+        let loginForm = document.getElementById('login');
+        let inputs = loginForm?.querySelectorAll('input');
+        inputs?.forEach((inputElement: HTMLInputElement) => {
+            inputElement.value = '';
+        });
+
+        let gamerInfo  = document.getElementById('gamer_details');
+        inputs = gamerInfo?.querySelectorAll('input');
+        inputs?.forEach((inputElement: HTMLInputElement) => {
+            inputElement.value = '';
+        });
+
+        let stateElement = document.getElementById('state') as HTMLSelectElement;
+        stateElement.selectedIndex = 28;
+
+        let genderElement  = document.getElementById('sex') as HTMLSelectElement;
+        genderElement.selectedIndex = -1;
+
+        
+    }
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -399,7 +449,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                             <div className="underline text-[12px] font-[800]">Add Photo or Avatar</div>
                             {/* implement file upload */}
                         </div>
-                        <div className="flex-[66%] bg-[#ff0000] mr-[20px] p-[10px]">
+                        <div className="flex-[66%] bg-[#ff0000] mr-[20px] p-[10px]" id="gamer_details">
                             <ul className="text-right text-[12px]">
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamerName"><b>Gamer Name</b></label>
@@ -519,7 +569,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                 </div>
                 <div className="mt-[20px] pb-10">
                     <div className="mb-[20px]">Results will use Gamer Name</div>
-                    {!isExistingMember ? <input id="clear" className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] mr-[10px] text-white" type="button" value={"Clear"} /> : ''}
+                    {!isExistingMember ? <input id="clear" className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] mr-[10px] text-white" type="button" value={"Clear"} onClick={clearFormData} /> : ''}
                     {!isExistingMember ? <input id="join" className="bg-[red] border border-black border-solid w-[70px] h-[30px] font-600 text-[17px] text-white" type="button" value={"Join"} onClick={joinBtnClick} /> : ''}
                 </div>
             </div>
