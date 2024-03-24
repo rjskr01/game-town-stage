@@ -19,9 +19,9 @@ const GameListcontainer: React.FC<GameListContainerProps> = ({ onClick }) => {
                     <img src="assets/images/jack-trans.png" className="w-[50px]" />
                     <div className="text-[red] font-extrabold">HOUSE GAMES</div>
                 </div>
-                <GameList items={videoPokerItems} title="Video Poker" />
-                <GameList items={videoEZPokerItems} title="Video Poker" />
-                <GameList items={oneOnOnePokerItems} title="Video Poker" />
+                <GameList items={videoPokerItems} title="Video Poker" onClick={onClick} />
+                <GameList items={videoEZPokerItems} title="Video Poker" onClick={onClick} />
+                <GameList items={oneOnOnePokerItems} title="Video Poker" onClick={onClick} />
             </div>
             <div className="flex flex-1 justify-center flex-row flex-wrap gameListCls gameListImgCls">
                 <img onClick={onClick} src="assets/images/games/minitex.png" />
