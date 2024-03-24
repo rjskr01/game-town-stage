@@ -39,7 +39,7 @@ const TournamentContainer = () => {
         <div id="trnmtdtsHdr" className={`flex-[2] ${isMaximized ? 'invisible' : ''}`}>
           <div className="w-full m-auto text-center mt-[20px]">
 
-            <select className="border-none p-[0.75rem] text-[20px] md:text-[15px]" defaultValue={"NV"}>
+            <select className="border-none p-[0.75rem] text-[20px] md:text-[15px] cursor-pointer" defaultValue={"NV"}>
               {
                 stateItems.map((item, index) => {
                   return (

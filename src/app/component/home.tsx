@@ -410,7 +410,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                 <li>Member ID # 011218-0001NJ</li>
                                 <li>Member Since 01/12/2018</li>
                             </ul>
-                            <input type="button" className="bg-[red] text-black p-[4px] border border-black border-solid" value={'Cancel Membership'} />
+                            <input type="button" className="bg-[red] text-black p-[4px] border border-black border-solid cursor-pointer" value={'Cancel Membership'} />
                         </div>
                     </div>
                 }
@@ -496,18 +496,18 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     </div>
                 </div>
                 <div className={`mt-[20px] text-[14px] pb-10 flex ${isExistingMember ? 'items-center' : 'items-baseline'}`}>
-                    <input className="mr-[13px]" type="checkbox" id="isTermsAndConditionsVerified" name="isTermsAndConditionsVerified" value="isTermsAndConditionsVerified" onChange={handleChange} />
+                    <input className="mr-[13px] cursor-pointer" type="checkbox" id="isTermsAndConditionsVerified" name="isTermsAndConditionsVerified" value="isTermsAndConditionsVerified" onChange={handleChange} />
                     {!isExistingMember ?
                         <ul>
                             <li>I have read and agree to the rules of membership for Gametown.us</li>
                             <li>You will receive a e-mail to confirm your membership.</li>
-                            <li className="leading-[6px]">Please check to activate membership</li>
+                            <li className="leading-[6px] cursor-pointer">Please check to activate membership</li>
                         </ul>
                         : <div className="text-[11px]">I have read, understand, and agree to the Gametown.com <span className="underline">terms and conditions.</span></div>}
                 </div>
                 {isExistingMember ? <div className="text-center mt-[15px] md:mt-[15px]">
-                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] mr-[10px] text-white" type="button" value={"Cancel Changes"} />
-                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] text-white" type="button" value={"Save Changes"} />
+                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] mr-[10px] text-white cursor-pointer" type="button" value={"Cancel Changes"} />
+                    <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] text-white cursor-pointer" type="button" value={"Save Changes"} />
                 </div> : ''}
             </div>
             <div className="flex-[40%] text-center text-black font-[Arial] text-[14px]">
@@ -516,12 +516,12 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         <ul>
                             <li className="text-[red] mb-[15px] font-[800]">Up Grade To One Eye Jack Member</li>
                             <li className="text-left">
-                                <input className="align-middle mr-[10px]" type="radio" id="upannualMember" name="UpMemberShip" value="annual" checked />
-                                <label htmlFor="upannualMember" className="text-[12px]">Annual membership at $60/year (16 cents per day)</label><br />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="upannualMember" name="UpMemberShip" value="annual" checked />
+                                <label htmlFor="upannualMember" className="text-[12px] cursor-pointer">Annual membership at $60/year (16 cents per day)</label><br />
                             </li>
                             <li className="text-left">
-                                <input className="align-middle mr-[10px]" type="radio" id="upmonthlyMember" name="UpMemberShip" value="monthly" />
-                                <label htmlFor="upmonthlyMember" className="text-[12px]">Monthly membership at $5.99/month (20 cents a day)</label><br />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="upmonthlyMember" name="UpMemberShip" value="monthly" />
+                                <label htmlFor="upmonthlyMember" className="text-[12px] cursor-pointer">Monthly membership at $5.99/month (20 cents a day)</label><br />
                             </li>
                         </ul>
                     </div>
@@ -538,18 +538,18 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     <li>1 Year Membership Receive Free T-Shirt</li>
                 </ul>
                 {isExistingMember ? <div className="border-b-[2px] border-solid border-black">
-                    <input type='button' className="bg-[red] border border-black border-solid font-600 text-[17px] text-white m-[15px] p-[4px]" value={'Upgrade'} />
+                    <input type='button' className="bg-[red] border border-black border-solid font-600 text-[17px] text-white m-[15px] p-[4px] cursor-pointer" value={'Upgrade'} />
                 </div> : ''}
                 <div className="flex flex-col">
                     <div className="flex mt-[20px]">
                         <div className="flex-[13%]">
                             <div>
-                                <input className="mr-[2px]" type="radio" name="canShowOnlyGamerInformation" id="expose_player_yes" value="yes" checked onChange={handleChange}/>
-                                <label htmlFor="expose_player_yes">Show</label>
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_yes" value="yes" checked onChange={handleChange}/>
+                                <label htmlFor="expose_player_yes" className="cursor-pointer">Show</label>
                             </div>
                             <div>
-                                <input className="mr-[2px]" type="radio" name="canShowOnlyGamerInformation" id="expose_player_no" value="no" onChange={handleChange}/>
-                                <label htmlFor="expose_player_no">Hide</label>
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_no" value="no" onChange={handleChange}/>
+                                <label htmlFor="expose_player_no" className="cursor-pointer">Hide</label>
                             </div>
                         </div>
                         <div className="flex-[72%] text-[13px]">
@@ -559,12 +559,12 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     <div className="flex mt-[20px]">
                         <div className="flex-[9%]">
                             <div>
-                                <input className="mr-[2px]" type="radio" name="canDoEmailContact" id="contact_player_yes" value="yes" checked  onChange={handleChange} />
-                                <label htmlFor="contact_player_yes">Yes</label>
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_yes" value="yes" checked  onChange={handleChange} />
+                                <label htmlFor="contact_player_yes" className="cursor-pointer">Yes</label>
                             </div>
                             <div>
-                                <input className="mr-[2px]" type="radio" name="canDoEmailContact" id="contact_player_no" value="no"   onChange={handleChange} />
-                                <label htmlFor="contact_player_no">No</label>
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_no" value="no"   onChange={handleChange} />
+                                <label htmlFor="contact_player_no" className="cursor-pointer">No</label>
                             </div>
                         </div>
                         <div className="flex-[72%] text-[13px]">
