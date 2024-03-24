@@ -475,16 +475,21 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                         }
                                     </select>
                                 </li>
-                                <li className="mb-[5px]">
-                                    <label className="mr-[10px]" htmlFor="birthYear"><b>Birth Year</b></label>
-                                    <input className="border border-black border-solid w-[50px]" type="text" placeholder="" name="birthYear" id="birthYear" required  onChange={handleChange}/>
-                                    <label className="mr-[10px]" htmlFor="gamer_sex"><b>Sex</b></label>
-                                    <select className="border border-solid w-[90px]" id="sex" name="sex" onChange={handleChange}>
-                                        <option value="N"></option>
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
-                                        <option value="NB">Non-Binary</option>
-                                    </select>
+                                <li className="mb-[5px] flex flex-row">
+                                    <div>
+                                        <label className="mr-[5px]" htmlFor="birthYear"><b>Birth Year</b></label>
+                                        <input className="border border-black border-solid w-[50px]" type="text" placeholder="" name="birthYear" id="birthYear" required  onChange={handleChange}/>
+                                    </div>
+
+                                    <div>
+                                        <label className="mr-[7px] ml-[4px]" htmlFor="gamer_sex"><b>Sex</b></label>
+                                        <select className="border border-solid w-[127px]" id="sex" name="sex" onChange={handleChange}>
+                                            <option value="N"></option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                            <option value="NB">Non-Binary</option>
+                                        </select>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
