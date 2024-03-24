@@ -334,7 +334,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         validateField(name, value);
     }
 
-    const validateField = (fieldName: string, value: string | number | boolean)=>{
+    const validateField = (fieldName: string, value: string | number | boolean)=> {
         let error =  '';
         switch(fieldName) {
             case 'firstName':
@@ -388,17 +388,17 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         <h1 className="text-[red] text-[18px] font-[800] ml-[22px]">JOIN FOR FREE:</h1>
                         <ul>
                             <li>
-                                <input className="align-middle mr-[10px]" type="radio" id="freeMember" name="memberShip" value="free" checked onChange={handleChange}/>
-                                <label htmlFor="freeMember" className="text-[12px] font-[800]">REDJACK MEMBERSHIP / 60 Minutes of free play per day</label><br />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="freeMember" name="memberShip" value="free" checked onChange={handleChange}/>
+                                <label htmlFor="freeMember" className="text-[12px] font-[800] cursor-pointer">REDJACK MEMBERSHIP / 60 Minutes of free play per day</label><br />
                                 <p className="text-[red] text-[10px] ml-[22px]">Or Up Grade to One Eye Jack Membership with unlimited play and no advertising</p>
                             </li>
                             <li>
-                                <input className="align-middle mr-[10px]" type="radio" id="annualMember" name="memberShip" value="annual" onChange={handleChange}/>
-                                <label htmlFor="annualMember" className="text-[12px]">Annual membership at $60/year (16 cents per day)</label><br />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="annualMember" name="memberShip" value="annual" onChange={handleChange}/>
+                                <label htmlFor="annualMember" className="text-[12px] cursor-pointer">Annual membership at $60/year (16 cents per day)</label><br />
                             </li>
                             <li>
-                                <input className="align-middle mr-[10px]" type="radio" id="monthlyMember" name="memberShip" value="monthly" onChange={handleChange}/>
-                                <label htmlFor="monthlyMember" className="text-[12px]">Monthly membership at $5.99/month (20 cents a day)</label><br />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="monthlyMember" name="memberShip" value="monthly" onChange={handleChange}/>
+                                <label htmlFor="monthlyMember" className="text-[12px] cursor-pointer">Monthly membership at $5.99/month (20 cents a day)</label><br />
                             </li>
                         </ul>
                     </div>
