@@ -159,7 +159,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         isTermsAndConditionsVerified: false,
         canDoEmailContact: true,
         canShowOnlyGamerInformation: true,
-        memberShip: "default",
+        memberShip: "free",
         psw: "",
         psw_repeat: "",
         uid: ""
@@ -180,6 +180,11 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
     });
 
     const dispatch = useDispatch<AppDispatch>();
+
+    const [memberShip, setMemberShip] = useState<string>('free');
+    const [canShowOnlyGamerInformation, setCanShowOnlyGamerInformation] = useState<string>('yes');
+    const [canDoEmailContact, setCanDoEmailContact] = useState<string>('yes');
+
 
     useEffect(()=> {
         if(emailValidationMessage !== '') {
@@ -423,6 +428,21 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
           });
     }
 
+    const memberShipChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setMemberShip(e.target.value);
+        formData.memberShip = e.target.value;
+    }
+
+    const gamerInformationVisibilityChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setCanShowOnlyGamerInformation(e.target.value);
+        formData.canShowOnlyGamerInformation = e.target.value === "yes" ? true : false;
+    }
+
+    const canDoEmailContactChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setCanDoEmailContact(e.target.value);
+        formData.canDoEmailContact = e.target.value === "yes" ? true : false;
+    }
+
     return (
     <section className="flex">
             <div className="flex-[60%] text-black font-[Arial] ml-[20px]">
@@ -431,16 +451,16 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         <h1 className="text-[red] text-[18px] font-[800] ml-[22px]">JOIN FOR FREE:</h1>
                         <ul>
                             <li>
-                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="freeMember" name="memberShip" value="free" checked onChange={handleChange}/>
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="freeMember" name="memberShip" value="free" checked={memberShip === 'free'} onChange={memberShipChange}/>
                                 <label htmlFor="freeMember" className="text-[12px] font-[800] cursor-pointer">REDJACK MEMBERSHIP / 60 Minutes of free play per day</label><br />
                                 <p className="text-[red] text-[10px] ml-[22px]">Or Up Grade to One Eye Jack Membership with unlimited play and no advertising</p>
                             </li>
                             <li>
-                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="annualMember" name="memberShip" value="annual" onChange={handleChange}/>
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="annualMember" name="memberShip" value="annual" checked={memberShip === 'annual'} onChange={memberShipChange}/>
                                 <label htmlFor="annualMember" className="text-[12px] cursor-pointer">Annual membership at $60/year (16 cents per day)</label><br />
                             </li>
                             <li>
-                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="monthlyMember" name="memberShip" value="monthly" onChange={handleChange}/>
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="monthlyMember" name="memberShip" value="monthly" checked={memberShip === 'monthly'} onChange={memberShipChange}/>
                                 <label htmlFor="monthlyMember" className="text-[12px] cursor-pointer">Monthly membership at $5.99/month (20 cents a day)</label><br />
                             </li>
                         </ul>
@@ -587,11 +607,11 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     <div className="flex mt-[20px]">
                         <div className="flex-[13%]">
                             <div>
-                                <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_yes" value="yes" checked onChange={handleChange}/>
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_yes" value="yes" checked={canShowOnlyGamerInformation === 'yes'}  onChange={gamerInformationVisibilityChange}/>
                                 <label htmlFor="expose_player_yes" className="cursor-pointer">Show</label>
                             </div>
                             <div>
-                                <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_no" value="no" onChange={handleChange}/>
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_no" value="no" checked={canShowOnlyGamerInformation === 'no'} onChange={gamerInformationVisibilityChange}/>
                                 <label htmlFor="expose_player_no" className="cursor-pointer">Hide</label>
                             </div>
                         </div>
@@ -602,11 +622,11 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     <div className="flex mt-[20px]">
                         <div className="flex-[9%]">
                             <div>
-                                <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_yes" value="yes" checked  onChange={handleChange} />
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_yes" value="yes" checked={canDoEmailContact === 'yes'}   onChange={canDoEmailContactChange} />
                                 <label htmlFor="contact_player_yes" className="cursor-pointer">Yes</label>
                             </div>
                             <div>
-                                <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_no" value="no"   onChange={handleChange} />
+                                <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_no" value="no"  checked={canDoEmailContact === 'no'}   onChange={canDoEmailContactChange} />
                                 <label htmlFor="contact_player_no" className="cursor-pointer">No</label>
                             </div>
                         </div>
