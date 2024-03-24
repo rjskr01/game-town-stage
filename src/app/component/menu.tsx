@@ -42,7 +42,7 @@ const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "" }) => {
                     </svg>
                 </button>
                 <div ref={menuRef} className={`w-max md:block md:w-auto bg-white md:bg-inherit text-black md:text-white z-10 absolute md:relative top-8 md:top-0 ${isMobileMenuOpen ? 'block' : 'hidden'}`} id="navbar-default">
-                    <ul className='flex flex-col md:flex-row md:gap-[20px] border-solid border-black border-t border-b border-l border-r px-5 md:px-0 md:border-none'>
+                    <ul className='flex flex-col md:flex-row md:gap-[16px] border-solid border-black border-t border-b border-l border-r px-5 md:px-0 md:border-none'>
                         {items.map(item => (
                             <li key={item.id}>
                                 <Link href={item.url} className={`${menuItemClassName} text-[13px]`}>
