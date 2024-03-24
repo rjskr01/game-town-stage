@@ -169,6 +169,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         firstName: "First Name is required",
         lastName: "Last Name is required",
         email: "Email is required",
+        psw: "Password required",
         gamerName: "Gamer name is required",
         city: "City name is required",
         country: "Country is required",
@@ -176,7 +177,6 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         birthYear: "birth Year is required",
         sex: "sex is required.",
         isTermsAndConditionsVerified: "Is must read and confirm terms and conditions",
-        psw: "Password required"
     });
 
     const dispatch = useDispatch<AppDispatch>();
@@ -199,30 +199,34 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
             let email = formData.email;
             let psw = formData.psw;
 
+            for(const key in formError) {
+                let error = formError[key as keyof typeof formError];
+                if(error!=="") {
+                    let inputElement: HTMLInputElement | HTMLSelectElement = document.querySelector(`input#${key}`) as HTMLInputElement;
+                    if(inputElement == null) {
+                        inputElement = document.querySelector(`select#${key}`) as HTMLSelectElement;
+                    }
+                    if(inputElement) {
+                        inputElement.setCustomValidity(error);
+                        inputElement.reportValidity();
+                        isValidData = false;
+                        break;
+                    }
+                }
+            }
+
             if(email !== formData.confirmEmail) {
-                let inputElement: HTMLInputElement = document.querySelector('input#email') as HTMLInputElement;
+                let inputElement: HTMLInputElement = document.querySelector('input#confirmEmail') as HTMLInputElement;
                 inputElement.setCustomValidity("Both Email and Confirm Email are mismatch.");
                 inputElement.reportValidity();
                 isValidData = false;
             }
           
             if(psw !== formData.psw_repeat) {
-                let inputElement: HTMLInputElement = document.querySelector('input#psw') as HTMLInputElement;
+                let inputElement: HTMLInputElement = document.querySelector('input#psw_repeat') as HTMLInputElement;
                 inputElement.setCustomValidity("Both password and confirm password are mismatch.");
                 inputElement.reportValidity();
                 isValidData = false;
-            }
-
-            for(const key in formError) {
-                let error = formError[key as keyof typeof formError];
-                if(error!=="") {
-                    let inputElement: HTMLInputElement = document.querySelector(`input#${key}`) as HTMLInputElement;
-                    if(inputElement) {
-                        inputElement.setCustomValidity(error);
-                        inputElement.reportValidity();
-                    }
-                    isValidData = false;
-                }
             }
 
             if(isValidData) {
@@ -255,7 +259,6 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
     }
 
     const clearFormData = ()=> {
-
         
         let radioButton = document.querySelector('input[value="free"]') as HTMLInputElement;
         radioButton.checked = true;
@@ -298,6 +301,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         let genderElement  = document.getElementById('sex') as HTMLSelectElement;
         genderElement.selectedIndex = -1;
 
+        let btnElement = document.querySelector('#join') as HTMLButtonElement;
+        btnElement.disabled = false;
         
     }
 
@@ -336,42 +341,80 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
 
     const validateField = (fieldName: string, value: string | number | boolean)=> {
         let error =  '';
+        let inputElement = null;
         switch(fieldName) {
             case 'firstName':
                 value = value as string;
                 error = value.trim() === '' ? 'First Name is required' : '';
+                inputElement = document.getElementById('firstName') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'lastName':
                 value = value as string;
                 error = value.trim() === '' ? 'Last Name is required' : '';
+                inputElement = document.getElementById('lastName') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'email':
                 value = value as string;
                 error = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address';
+                inputElement = document.getElementById('email') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
-            case 'password':
+            case 'confirmEmail':
+                inputElement = document.getElementById('confirmEmail') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
+                break;
+            case 'psw':
                 value = value as string;
                 error = value.trim() === '' ? 'Password is required' : '';
+                inputElement = document.getElementById('psw') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
+                break;
+            case 'psw_repeat': 
+                inputElement = document.getElementById('psw_repeat') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'gamerName':
                 value = value as string;
                 error = value.trim() === '' ? 'Gamer name is required' : '';
+                inputElement = document.getElementById('gamerName') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'city':
                 value = value as string;
                 error = value.trim() === '' ? 'city is required' : '';
+                inputElement = document.getElementById('city') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'country':
                 value = value as string;
                 error = value.trim() === '' ? 'country is required' : '';
+                inputElement = document.getElementById('country') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'birthYear':
                 value = value as number;
                 error = value === 0 ? 'Birth year is required' : '';
+                inputElement = document.getElementById('birthYear') as HTMLInputElement;
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
                 break;
             case 'isTermsAndConditionsVerified':
-                value = value as boolean;
+                inputElement = document.getElementById('isTermsAndConditionsVerified') as HTMLInputElement;    
+                value = inputElement.checked;
                 error = value === false ? "It must be selected": '';
+                inputElement.setCustomValidity('');
+                inputElement.reportValidity();
         }
 
         setFormError({
@@ -478,7 +521,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                 <li className="mb-[5px] flex flex-row">
                                     <div>
                                         <label className="mr-[5px]" htmlFor="birthYear"><b>Birth Year</b></label>
-                                        <input className="border border-black border-solid w-[50px]" type="text" placeholder="" name="birthYear" id="birthYear" required  onChange={handleChange}/>
+                                        <input className="border border-black border-solid w-[50px]" type="number" placeholder="" name="birthYear" id="birthYear" required  onChange={handleChange}/>
                                     </div>
 
                                     <div>
