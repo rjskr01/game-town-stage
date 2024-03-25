@@ -6,10 +6,11 @@ import Link from 'next/link';
 
 type MenuProps = {
     items: MenuItem[],
-    menuItemClassName?: string
+    menuItemClassName?: string,
+    handleClick?: () => void;
 }
 
-const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "" }) => {
+const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "", handleClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +46,7 @@ const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "" }) => {
                     <ul className='flex flex-col md:flex-row md:gap-[16px] border-solid border-black border-t border-b border-l border-r px-5 md:px-0 md:border-none'>
                         {items.map(item => (
                             <li key={item.id}>
-                                <Link href={item.url} className={`${menuItemClassName} text-[13px]`}>
+                                <Link href={item.url} className={`${menuItemClassName} text-[13px]`} onClick={handleClick}>
                                     {item.name}
                                 </Link>
                             </li>
