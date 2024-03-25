@@ -23,7 +23,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ isMaximized, onCloseClick
 
             </div>
             <div id="gameImgHolder" className={`${isMaximized ? 'h-[calc(100%-50px)] md:h-[calc(100%-46px)] mx-auto bg-[red]' : ''}`}>
-                <img id="gameImg" className={`${isMaximized ? 'ml-[1px] md:ml-auto h-full mx-auto' : 'w-full ml-[1px] h-full'}`} src="assets/images/game.jpg" />
+                <img id="gameImg" className={`${isMaximized ? 'ml-[1px] md:ml-auto h-full mx-auto' : 'w-full ml-[1px] h-full'}`} src="/assets/images/game.jpg" />
             </div>
         </div>)
 }

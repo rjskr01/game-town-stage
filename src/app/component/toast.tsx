@@ -33,7 +33,7 @@ const Toast: React.FC<ToastProps> = () => {
                                         { message }
                                     </p>
                                 </div>
-                                <img src="assets/images/icons8-close-24.png" className="w-[16px] h-[16px] cursor-pointer" onClick={hide} />
+                                <img src="/assets/images/icons8-close-24.png" className="w-[16px] h-[16px] cursor-pointer" onClick={hide} />
                 </div>
             }
         </>

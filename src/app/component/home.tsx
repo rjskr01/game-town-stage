@@ -466,7 +466,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         </ul>
                     </div>
                     : <div className="flex m-[15px] justify-center">
-                        <img className="w-[14%] h-[0%]" src='assets/images/logo-trans.png' />
+                        <img className="w-[14%] h-[0%]" src='/assets/images/logo-trans.png' />
                         <div className="font-[600]">
                             <ul>
                                 <li>Redjack Member (Free)</li>
