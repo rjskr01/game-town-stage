@@ -19,7 +19,7 @@ const Members = () => {
                         <td className="pr-[10px] font-[600]">Clubs</td>
                         <td className="pr-[10px] font-[600]">Play Time</td>
                     </tr>
-                    <tr className="cursor-pointer" onClick={() => { router.push("/member?subpage=member") }}>
+                    <tr className="cursor-pointer" onClick={() => { router.push("/memberclub/member") }}>
 
                         <td className="pr-[10px]">Smith</td>
                         <td className="pr-[10px]">NJ/Union</td>

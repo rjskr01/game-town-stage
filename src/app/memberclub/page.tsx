@@ -1,10 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import AccountMenu from "../component/account-menu";
-import { useRouter } from "next/router";
 import TournamentContainer from "../component/tournament-container";
-import Purchase from "../component/purchase";
 import stateItems from "../data/state-items";
 import Clubs from "../component/clubs";
 import Members from "../component/members";

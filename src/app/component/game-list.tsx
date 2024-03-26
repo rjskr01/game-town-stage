@@ -7,7 +7,7 @@ type GameListProps = {
 
 const GameList: React.FC<GameListProps> = ({items, title, onClick}) => {
     return (
-        <ul className="font-extrabold pl-[20px] mb-[10px]">
+        <ul className="font-extrabold pl-[20px] mb-[10px] w-fit">
             {title}
             {items.map((item, index) => (
                 <li key={index} className="list-none font-normal cursor-pointer" onClick={onClick}>{item}</li>

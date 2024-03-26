@@ -1,5 +1,5 @@
 
-import  mainMenuItems from "../data/main-menu-items"
+import  mainMenuItems from "../data/game-category-menu-items"
 import Menu from "./menu"
 
 export default function MainNavigation() {

@@ -1,8 +1,10 @@
-import Avatar from "../component/avatar";
-import TournamentContainer from "../component/tournament-container";
-import member from "../data/default-member";
+import { useEffect } from "react";
+import Avatar from "../../component/avatar";
+import TournamentContainer from "../../component/tournament-container";
+import member from "../../data/default-member";
 
 const Member = () => {
+
     return<>
         <div className="flex flex-row min-w-screen">
             <div className="flex-[60%] ml-[50px]">

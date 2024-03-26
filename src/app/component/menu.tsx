@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { MenuItem } from '../model/menu-item';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 type MenuProps = {
@@ -13,6 +14,7 @@ type MenuProps = {
 const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "", handleClick }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname()
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -33,6 +35,42 @@ const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "", handleClick 
         };
     }, []);
 
+
+    const isActive = (title: string, type: string)  =>  {
+
+        if(pathname === '/') {
+            if(type === 'game'){
+                if(title === 'poker') {
+                    return 'active';
+                }
+            }
+
+            if(type === 'main') {
+                if(title === 'home') {
+                    return 'active'
+                }
+            }
+        } else {
+            let paths = pathname.split('/');
+            if(paths.length > 0) {
+                if(type === 'main') {
+                    if(title === paths[1]) {
+                        return 'active'
+                    }
+                }
+                if(type=== 'account') {
+                    if(title === paths[2]) {
+                        return 'active';
+                    }
+                }
+            }
+            
+        }
+
+
+        return '';
+    }
+
     return (
         <>
             <div className='flex flex-wrap items-center justify-between mx-auto h-[24px] md:h-auto relative'>
@@ -46,7 +84,7 @@ const Menu: React.FC<MenuProps> = ({ items, menuItemClassName = "", handleClick 
                     <ul className='flex flex-col md:flex-row md:gap-[16px] border-solid border-black border-t border-b border-l border-r px-5 md:px-0 md:border-none'>
                         {items.map(item => (
                             <li key={item.id}>
-                                <Link href={item.url} className={`${menuItemClassName} text-[13px]`} onClick={handleClick}>
+                                <Link href={item.url} className={`${menuItemClassName} text-[13px] ${isActive(item.title, item.type) }`} onClick={handleClick}>
                                     {item.name}
                                 </Link>
                             </li>
