@@ -15,7 +15,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ isMaximized, onCloseClick
     const isGameContainerHidden = useSelector((state: RootState) => state.rootReducer.value.isHidden);
 
     return (
-        <div id="gameContainer" className={`${isGameContainerHidden ? 'hidden' : ''} ${isMaximized ? 'absolute h-auto md:h-[calc(100vh-150px)] mx-auto w-[calc(100%-300px)]' : ''}`}>
+        <div id="gameContainer" className={`${isGameContainerHidden ? 'hidden' : ''} ${isMaximized ? 'absolute h-auto md:h-[calc(100vh-150px)] mx-auto w-[calc(100%-300px)] lg:w-[calc(100%-347px)]' : ''}`}>
             <div className="flex w-full text-black text-[31px] font-['Arial'] bg-white">
                 <div className="flex-[9]">House Blackjack Tournament (NV)</div>
                 <div className='minmaxBtn flex-[0.3] cursor-pointer text-right' onClick={onResizeClick} id="maxIcon">&#128471;&#xFE0E;</div>

@@ -23,6 +23,7 @@ module.exports = {
     screens : {
       sm: '834px', // Mobile screens and smaller
       md: '1360px', // Desktop screens and smaller
+      lg: '1700px', // larger screen 
     }
   },
   plugins: [],
