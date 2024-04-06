@@ -184,6 +184,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
     const [memberShip, setMemberShip] = useState<string>('free');
     const [canShowOnlyGamerInformation, setCanShowOnlyGamerInformation] = useState<string>('yes');
     const [canDoEmailContact, setCanDoEmailContact] = useState<string>('yes');
+    const [upgradeMemberShip, setUpgradeMemberShip] = useState<string>('annual');
 
 
     useEffect(()=> {
@@ -433,6 +434,12 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
         formData.memberShip = e.target.value;
     }
 
+    const upgradeMemberShipChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setUpgradeMemberShip(e.target.value);
+        formData.memberShip = e.target.value;
+    }
+
+
     const gamerInformationVisibilityChange = (e: ChangeEvent<HTMLInputElement>) => {
         setCanShowOnlyGamerInformation(e.target.value);
         formData.canShowOnlyGamerInformation = e.target.value === "yes" ? true : false;
@@ -579,11 +586,11 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         <ul>
                             <li className="text-[red] mb-[15px] font-[800]">Up Grade To One Eye Jack Member</li>
                             <li className="text-left">
-                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="upannualMember" name="UpMemberShip" value="annual" checked />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="upannualMember" name="UpMemberShip" value="annual" checked={upgradeMemberShip === 'annual'}  onChange={upgradeMemberShipChange}/>
                                 <label htmlFor="upannualMember" className="text-[12px] cursor-pointer">Annual membership at $60/year (16 cents per day)</label><br />
                             </li>
                             <li className="text-left">
-                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="upmonthlyMember" name="UpMemberShip" value="monthly" />
+                                <input className="align-middle mr-[10px] cursor-pointer" type="radio" id="upmonthlyMember" name="UpMemberShip" value="monthly" checked={upgradeMemberShip === 'monthly'}  onChange={upgradeMemberShipChange}/>
                                 <label htmlFor="upmonthlyMember" className="text-[12px] cursor-pointer">Monthly membership at $5.99/month (20 cents a day)</label><br />
                             </li>
                         </ul>
