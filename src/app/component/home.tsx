@@ -13,6 +13,7 @@ import { showNotificationPopup } from "@/redux/features/game-container-visibilit
 import { DocumentData } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
+import { wrap } from "module";
 
 export interface IHomeContainer {
     isExistingMember: boolean
@@ -519,7 +520,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                             <div className="underline text-[12px] font-[800]">Add Photo or Avatar</div>
                             {/* implement file upload */}
                         </div>
-                        <div className="flex-[66%] bg-[#ff0000] mr-[20px] p-[10px]" id="gamer_details">
+                        <div className="flex-[66%] bg-[#ff0000] mr-[20px] py-[10px] px-2" id="gamer_details">
                             <ul className="text-right text-[12px]">
                                 <li className="mb-[5px]">
                                     <label className="mr-[10px]" htmlFor="gamerName"><b>Gamer Name</b></label>
@@ -545,13 +546,13 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                         }
                                     </select>
                                 </li>
-                                <li className="mb-[5px] flex flex-row">
-                                    <div>
-                                        <label className="mr-[5px]" htmlFor="birthYear"><b>Birth Year</b></label>
+                                <li className="mb-[5px] flex flex-row justify-between">
+                                    <div className="flex flex-row">
+                                        <label className="mr-[5px] birthYearLabel" htmlFor="birthYear"><b>Birth Year</b></label>
                                         <input className="border border-black border-solid w-[50px]" type="number" placeholder="" name="birthYear" id="birthYear" required  onChange={handleChange}/>
                                     </div>
 
-                                    <div>
+                                    <div className="flex flex-row">
                                         <label className="mr-[7px] ml-[4px]" htmlFor="gamer_sex"><b>Sex</b></label>
                                         <select className="border border-solid w-[127px]" id="sex" name="sex" onChange={handleChange}>
                                             <option value="N"></option>

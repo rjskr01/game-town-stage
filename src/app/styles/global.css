@@ -494,6 +494,10 @@ body {
     margin: auto;
 }
 
+.birthYearLabel {
+    text-wrap: nowrap;
+}
+
 @media screen and (max-width: 1700px) {
     .fontSize31 {
         font-size: 25px;
