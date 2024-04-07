@@ -32,10 +32,10 @@ const TournamentContainer = () => {
 
   }
   return (
-    <section className="trnmntaddSectionCls flex-[40%] self-stretch mb-5">
+    <section className="trnmntaddSectionCls flex-[40%] self-stretch">
       {/* <TournamentHeader/>
             <div id="trmntLstHdr" className="mt-[60px] text-[30px] md:text-[18px] w-[55%] text-center font-['Arial, Helvetica, sans-serif']">TOURNAMENT LISTING</div> */}
-      <div id='trnmtLstnHolder' className="w-[90%] flex bg-white h-full md:h-[calc(100vh-150px)] text-[black] mb-5">
+      <div id='trnmtLstnHolder' className="w-[90%] flex bg-white h-full text-[black] mb-5">
         <div id="trnmtdtsHdr" className={`flex-[2] ${isMaximized ? 'invisible' : ''}`}>
           <div className="w-full m-auto text-center mt-[20px]">
 

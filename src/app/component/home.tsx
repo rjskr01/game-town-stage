@@ -566,7 +566,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         </div>
                     </div>
                 </div>
-                <div className={`mt-[20px] text-[14px] pb-10 flex ${isExistingMember ? 'items-center' : 'items-baseline'}`}>
+                <div className={`mt-4 text-[14px] pb-4 flex ${isExistingMember ? 'items-center' : 'items-baseline'}`}>
                     <input className="mr-[13px] cursor-pointer" type="checkbox" id="isTermsAndConditionsVerified" name="isTermsAndConditionsVerified" value="isTermsAndConditionsVerified" onChange={handleChange} />
                     {!isExistingMember ?
                         <ul>
@@ -576,7 +576,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         </ul>
                         : <div className="text-[11px]">I have read, understand, and agree to the Gametown.com <span className="underline">terms and conditions.</span></div>}
                 </div>
-                {isExistingMember ? <div className="text-center mt-[15px] md:mt-[15px]">
+                {isExistingMember ? <div className="text-center mb-4">
                     <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] mr-[10px] text-white cursor-pointer" type="button" value={"Cancel Changes"} />
                     <input className="bg-[red] border border-black border-solid p-[4px] font-600 text-[17px] text-white cursor-pointer" type="button" value={"Save Changes"} />
                 </div> : ''}
