@@ -6,10 +6,14 @@ import { logIn } from "@/firebase/login";
 import { logOut } from "@/firebase/logout";
 
 import { useRouter } from 'next/navigation'
+import { getUser } from "@/firebase/user.services";
+import { FormState } from "./home";
+import { DocumentData } from "firebase/firestore";
 
 interface LoginInfo  {
     userName: string,
-    password: string
+    password: string,
+    firstName?: string | null | undefined
 }
 
 interface LoginError {
@@ -56,6 +60,10 @@ const Login = () => {
                     inputElement.value = "";
                     let passwordElement = document.querySelector('input#password') as HTMLInputElement;
                     passwordElement.value = "";
+                    getUser(res.user.uid).then((user => {
+                        console.log(user?.firstName);
+                        setLoginData({...loginData, firstName: user?.firstName});
+                    }));
                     router.push("/");
                 }).catch(err=> {
                     let passwordElement = document.querySelector('input#password') as HTMLInputElement;
@@ -72,6 +80,7 @@ const Login = () => {
     const signOut = () => {
         logOut();
         setLoginText("LOG IN");
+        setLoginData({...loginData, firstName:null})
         router.push("/");
     }
 
@@ -111,7 +120,10 @@ const Login = () => {
                         <label>PASS WORD</label>
                         <input id="password" name="password" type="password" className="w-[125px] rounded-[5px] ml-[10px] text-black" onChange={handleChange} />
                     </div>
-
+                </div>
+                <div className={`float-left text-[11px] mx-[20px] ${loginData.firstName ? "" : "hidden"}`}>
+                    <p className="uppercase text-[13px] text-red-600">{`Welcome`}</p>
+                    <p className="uppercase text-[13px] text-red-600">{`${loginData.firstName}`}</p>
                 </div>
                 <div className={`cursor-pointer float-left ${loginText === "LOG OUT" ? "ml-6" : ""}`}>
                     <div className="circle">

@@ -25,7 +25,7 @@ export interface UserType {
 }
 
 
-interface FormState {
+export interface FormState {
    firstName: string,
    lastName: string,
    email: string,
@@ -117,17 +117,17 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                         
                                     } else if(key === "isTermsAndConditionsVerified") {
                                         let element = document.querySelector(`input#${key}`) as HTMLInputElement;
-                                        element.checked = data === true ? true : false;
+                                        element && (element.checked = data === true ? true : false);
     
                                     } else if (key === "memberShip") {
                                         let element = null;
                                         if(data === "") {
                                             element = document.querySelector(`input#freeMember`) as HTMLInputElement;
-                                            element.checked = true;
+                                            element && (element.checked = true);
                                             element = document.querySelector(`input#annualMember`) as HTMLInputElement;
-                                            element.checked = false;
+                                            element && (element.checked = false);
                                             element = document.querySelector(`input#monthlyMember`) as HTMLInputElement;
-                                            element.checked = false;
+                                            element && (element.checked = false);
                                         }
                                     }
                                     
@@ -613,7 +613,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                 </div> : ''}
                 <div className="flex flex-col">
                     <div className="flex mt-[20px]">
-                        <div className="flex-[13%]">
+                        <div className="flex-[13%] text-left">
                             <div>
                                 <input className="mr-[2px] cursor-pointer" type="radio" name="canShowOnlyGamerInformation" id="expose_player_yes" value="yes" checked={canShowOnlyGamerInformation === 'yes'}  onChange={gamerInformationVisibilityChange}/>
                                 <label htmlFor="expose_player_yes" className="cursor-pointer">Show</label>
@@ -623,12 +623,12 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                 <label htmlFor="expose_player_no" className="cursor-pointer">Hide</label>
                             </div>
                         </div>
-                        <div className="flex-[72%] text-[13px]">
+                        <div className="flex-[72%] text-[13px] text-left">
                             Listing will show only gamer’s name, City, County, State, Birth Year and Sex.
                         </div>
                     </div>
                     <div className="flex mt-[20px]">
-                        <div className="flex-[9%]">
+                        <div className="flex-[13%] text-left">
                             <div>
                                 <input className="mr-[2px] cursor-pointer" type="radio" name="canDoEmailContact" id="contact_player_yes" value="yes" checked={canDoEmailContact === 'yes'}   onChange={canDoEmailContactChange} />
                                 <label htmlFor="contact_player_yes" className="cursor-pointer">Yes</label>
@@ -638,7 +638,7 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                                 <label htmlFor="contact_player_no" className="cursor-pointer">No</label>
                             </div>
                         </div>
-                        <div className="flex-[72%] text-[13px]">
+                        <div className="flex-[72%] text-[13px] text-left">
                             Can you be contacted to be invited to Tournaments, Leagues and Events?
                         </div>
                     </div>

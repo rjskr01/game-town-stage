@@ -498,6 +498,19 @@ body {
     text-wrap: nowrap;
 }
 
+
+img[src*="logo-trans.png"] {
+    height: 82px;
+    position: relative;
+    top: -12px;
+}
+
+img[src*="jack-trans.png"] {
+    height: 87px;
+    position: relative;
+    top: -14px;
+}
+
 @media screen and (max-width: 1700px) {
     .fontSize31 {
         font-size: 25px;
