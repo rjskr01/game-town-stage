@@ -1,26 +1,43 @@
 'use client'
 
-import { ChangeEvent, useState, useRef, forwardRef } from "react";
+import { ChangeEvent, useState, useRef, forwardRef, useEffect } from "react";
 import Image from 'next/image';
+import { getImageUrl, uploadImage } from "@/firebase/profilePicture.services";
+import { getURL } from "next/dist/shared/lib/utils";
+import { auth } from "@/firebase/initFirebase";
 
-const Avatar = () => {
-    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+interface AvatarProps {
+  callback:(file:File) => void;
+  url: string;
+}
+
+const Avatar: React.FC<AvatarProps> = ({ callback , url }) => {
+    const [avatarUrl, setAvatarUrl] = useState<string>("");
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        
-    }
+    
+
+    useEffect(()=>{
+      debugger;
+      console.log(url);
+      console.log(`avatarUrl -  ${avatarUrl}`);
+    })
 
     const openFileBrowser = () => {
-
         const input = document.createElement("input");
         input.type = "file";
         input.accept="image/*";
         input.onchange = (e) => {
-            const file = input.files?.[0];
-            const reader = new FileReader();
+          debugger;
+            const file : File | undefined = input.files?.[0];
+            const reader:FileReader = new FileReader();
 
-            reader.onload = () => {
+            if(file) {
+              callback(file);
+            }
+            // uploadImage(file)
+
+            reader.onload = async () => {
                 setAvatarUrl(reader.result as string);
             };
 
@@ -33,16 +50,16 @@ const Avatar = () => {
     }
 
     return (
-        <div className="border-solid border border-gray-300 w-[200px] h-[200px] m-6 rounded-lg">
+        <div className="border-solid border border-gray-300 m-[10px] h-[70%] w-[80%] rounded-lg">
           
        
-          {!avatarUrl && (
+          {!(avatarUrl || url) && (
             <button className="w-full h-full flex items-center justify-center border-none bg-transparent underline text-black cursor-pointer" onClick={openFileBrowser}> Add photo or Avatar</button>
           )}
 
-          {avatarUrl && (
+          {(avatarUrl || url) && (
             <Image
-              src={avatarUrl}
+              src={avatarUrl ? avatarUrl: url}
               alt="Avatar"
               width={200}
               height={200}

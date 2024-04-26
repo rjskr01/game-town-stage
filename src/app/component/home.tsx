@@ -14,6 +14,8 @@ import { DocumentData } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { wrap } from "module";
+import Avatar from "./avatar";
+import { getImageUrl, uploadImage } from "@/firebase/profilePicture.services";
 
 export interface IHomeContainer {
     isExistingMember: boolean
@@ -136,7 +138,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                         }
                     }
                 }
-                
+                let url = await getImageUrl();
+                setProfileUrl(url);
                 console.log(userData);
             }  else {
                 console.log("User is signed out");
@@ -146,6 +149,8 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
 
     const mailInputRef = useRef<HTMLInputElement>(null);
     const [emailValidationMessage, setEmailValidationMessage] = useState<string>('');
+    const [profileImage, setProfileImage] = useState<File | null>(null);
+    const [profileUrl, setProfileUrl] = useState<string> ('');
     const [formData, setFormData] = useState<FormState>({
         firstName: "",
         lastName: "",
@@ -244,10 +249,9 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                     console.log("User registration was completed successfully..");
                     formData.uid = user.uid;
                     addUser(formData);
+                    profileImage && uploadImage(profileImage);
                     sendMailVerification(user);
                     dispatch(showNotificationPopup("Email Verification was sent. Please check your inbox to complete the registration."));
-                    // let btnElement = document.querySelector('#clear') as HTMLButtonElement;
-                    // btnElement.disabled = true;
                     let btnElement = document.querySelector('#join') as HTMLButtonElement;
                     btnElement.disabled = true;
 
@@ -516,8 +520,9 @@ const HomeContainer: React.FC<IHomeContainer> = ({ isExistingMember }) => {
                 <div>
                     <div className="flex mt-10px">
                         <div className="flex-[34%]">
-                            <div className="border border-black border-solid m-[10px] h-[70%] w-[80%]"> </div>
-                            <div className="underline text-[12px] font-[800]">Add Photo or Avatar</div>
+                            <Avatar callback={setProfileImage} url={profileUrl} />
+                            {/* <div className="border border-black border-solid m-[10px] h-[70%] w-[80%]"> </div>
+                            <div className="underline text-[12px] font-[800]">Add Photo or Avatar</div> */}
                             {/* implement file upload */}
                         </div>
                         <div className="flex-[66%] bg-[#ff0000] mr-[20px] py-[10px] px-2" id="gamer_details">
